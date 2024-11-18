@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Text;
 using System.Text.Json;
 using System.Xml.Serialization;
 
@@ -14,14 +16,18 @@ namespace _10._1_Serialization
             InitializeComponent();
         }
 
-        private void btnCreate_Click(object sender, EventArgs e)
+        private void btnAddtoList_Click(object sender, EventArgs e)
         {
             customer = new Customer();
             customer.Id = int.Parse(txtId.Text);
             customer.FirstName = txtFname.Text;
             customer.LastName = txtLname.Text;
             customer.Membership = txtMembership.Text;
-            MessageBox.Show("Employee object created.");
+            customerList.Add(customer);
+            MessageBox.Show("Employee object created and added to the list.");
+            foreach (TextBox tb in this.Controls.OfType<TextBox>())
+                tb.Text = string.Empty;
+
         }
 
         private void btnJSONSerialize_Click(object sender, EventArgs e)
@@ -39,12 +45,18 @@ namespace _10._1_Serialization
         private void btnJSONDeserialize_Click(object sender, EventArgs e)
         {
             FileStream jsonStream = new FileStream(json, FileMode.Open, FileAccess.Read);
-            var obj = JsonSerializer.Deserialize<List<Customer>>(jsonStream);
+            var list = JsonSerializer.Deserialize<List<Customer>>(jsonStream);
 
-            foreach (var cust in customerList)
+            StringBuilder customerListInfo = new StringBuilder();
+
+            foreach (var cust in list)
             {
-                MessageBox.Show($"Customer Info:\nFirst Name: {cust?.FirstName}\nLastName: {cust?.LastName}\nMembership: {cust?.Membership}");
+                customerListInfo.AppendLine($"Id: {cust.Id}");
+                customerListInfo.AppendLine($"Last Name: {cust.LastName}");
+                customerListInfo.AppendLine($"Membership: {cust.Membership}");
+                customerListInfo.AppendLine();
             }
+            MessageBox.Show(customerListInfo.ToString());
             jsonStream.Close();
         }
 
@@ -55,7 +67,7 @@ namespace _10._1_Serialization
                 File.Delete(xml);
             }
             FileStream xmlStream = new FileStream(xml, FileMode.OpenOrCreate, FileAccess.Write);
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(Customer));
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Customer>));
             xmlSerializer.Serialize(xmlStream, customerList);
             MessageBox.Show("Object serialized (XML).");
             xmlStream.Close();
@@ -64,21 +76,21 @@ namespace _10._1_Serialization
         private void btnXMLDeserialize_Click(object sender, EventArgs e)
         {
             FileStream xmlStream = new FileStream(xml, FileMode.Open, FileAccess.Read);
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(Customer));
-            var obj = (Customer)xmlSerializer.Deserialize(xmlStream);
-            MessageBox.Show($"Customer Info:\nFirst Name: {obj?.FirstName}\nLastName: {obj?.LastName}\nMembership: {obj?.Membership}");
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Customer>));
+            var list = (List<Customer>)xmlSerializer.Deserialize(xmlStream);
+           
+            StringBuilder customerListInfo = new StringBuilder();
+
+            foreach (var cust in list)
+            {
+                customerListInfo.AppendLine($"Id: {cust.Id}");
+                customerListInfo.AppendLine($"Last Name: {cust.LastName}");
+                customerListInfo.AppendLine($"Membership: {cust.Membership}");
+                customerListInfo.AppendLine();
+            }
+            MessageBox.Show(customerListInfo.ToString());
             xmlStream.Close();
         }
 
-        private void btnAddtoList_Click(object sender, EventArgs e)
-        {
-            customer = new Customer();
-            customer.Id = int.Parse(txtId.Text);
-            customer.FirstName = txtFname.Text;
-            customer.LastName = txtLname.Text;
-            customer.Membership = txtMembership.Text;
-            customerList.Add(customer);
-            MessageBox.Show("Employee object created and added to the list.");
-        }
     }
 }
