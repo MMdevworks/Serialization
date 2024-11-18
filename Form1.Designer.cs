@@ -40,13 +40,13 @@
             btnJSONDeserialize = new Button();
             btnXMLDeserialize = new Button();
             btnXMLSerialize = new Button();
-            btnCreate = new Button();
+            btnAddtoList = new Button();
             SuspendLayout();
             // 
             // btnJSONSerialize
             // 
             btnJSONSerialize.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-            btnJSONSerialize.Location = new Point(124, 317);
+            btnJSONSerialize.Location = new Point(58, 311);
             btnJSONSerialize.Name = "btnJSONSerialize";
             btnJSONSerialize.Size = new Size(110, 23);
             btnJSONSerialize.TabIndex = 0;
@@ -58,7 +58,7 @@
             // 
             lblId.AutoSize = true;
             lblId.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblId.Location = new Point(153, 57);
+            lblId.Location = new Point(83, 37);
             lblId.Name = "lblId";
             lblId.Size = new Size(75, 15);
             lblId.TabIndex = 1;
@@ -66,21 +66,21 @@
             // 
             // txtId
             // 
-            txtId.Location = new Point(295, 54);
+            txtId.Location = new Point(177, 35);
             txtId.Name = "txtId";
             txtId.Size = new Size(100, 23);
             txtId.TabIndex = 2;
             // 
             // txtFname
             // 
-            txtFname.Location = new Point(295, 117);
+            txtFname.Location = new Point(177, 89);
             txtFname.Name = "txtFname";
             txtFname.Size = new Size(100, 23);
             txtFname.TabIndex = 3;
             // 
             // txtLname
             // 
-            txtLname.Location = new Point(295, 168);
+            txtLname.Location = new Point(177, 143);
             txtLname.Name = "txtLname";
             txtLname.Size = new Size(100, 23);
             txtLname.TabIndex = 4;
@@ -89,7 +89,7 @@
             // 
             lblFname.AutoSize = true;
             lblFname.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblFname.Location = new Point(167, 117);
+            lblFname.Location = new Point(83, 97);
             lblFname.Name = "lblFname";
             lblFname.Size = new Size(67, 15);
             lblFname.TabIndex = 5;
@@ -99,7 +99,7 @@
             // 
             lblLname.AutoSize = true;
             lblLname.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblLname.Location = new Point(153, 171);
+            lblLname.Location = new Point(83, 151);
             lblLname.Name = "lblLname";
             lblLname.Size = new Size(65, 15);
             lblLname.TabIndex = 6;
@@ -109,7 +109,7 @@
             // 
             lblMembership.AutoSize = true;
             lblMembership.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblMembership.Location = new Point(153, 220);
+            lblMembership.Location = new Point(83, 200);
             lblMembership.Name = "lblMembership";
             lblMembership.Size = new Size(77, 15);
             lblMembership.TabIndex = 8;
@@ -117,16 +117,17 @@
             // 
             // txtMembership
             // 
-            txtMembership.Location = new Point(295, 217);
+            txtMembership.Location = new Point(177, 197);
             txtMembership.Name = "txtMembership";
             txtMembership.Size = new Size(100, 23);
             txtMembership.TabIndex = 7;
             // 
             // btnJSONDeserialize
             // 
-            btnJSONDeserialize.BackColor = SystemColors.ControlLight;
+            btnJSONDeserialize.BackColor = SystemColors.ScrollBar;
             btnJSONDeserialize.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-            btnJSONDeserialize.Location = new Point(124, 373);
+            btnJSONDeserialize.ForeColor = SystemColors.ActiveCaptionText;
+            btnJSONDeserialize.Location = new Point(58, 367);
             btnJSONDeserialize.Name = "btnJSONDeserialize";
             btnJSONDeserialize.Size = new Size(110, 23);
             btnJSONDeserialize.TabIndex = 9;
@@ -136,43 +137,47 @@
             // 
             // btnXMLDeserialize
             // 
-            btnXMLDeserialize.BackColor = SystemColors.ControlLight;
+            btnXMLDeserialize.BackColor = SystemColors.ScrollBar;
             btnXMLDeserialize.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-            btnXMLDeserialize.Location = new Point(291, 373);
+            btnXMLDeserialize.ForeColor = SystemColors.ActiveCaptionText;
+            btnXMLDeserialize.Location = new Point(194, 367);
             btnXMLDeserialize.Name = "btnXMLDeserialize";
             btnXMLDeserialize.Size = new Size(110, 23);
             btnXMLDeserialize.TabIndex = 11;
-            btnXMLDeserialize.Text = "JSON Deserialize";
+            btnXMLDeserialize.Text = "XML Deserialize";
             btnXMLDeserialize.UseVisualStyleBackColor = false;
+            btnXMLDeserialize.Click += btnXMLDeserialize_Click;
             // 
             // btnXMLSerialize
             // 
             btnXMLSerialize.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold);
-            btnXMLSerialize.Location = new Point(291, 317);
+            btnXMLSerialize.Location = new Point(194, 311);
             btnXMLSerialize.Name = "btnXMLSerialize";
             btnXMLSerialize.Size = new Size(110, 23);
             btnXMLSerialize.TabIndex = 10;
-            btnXMLSerialize.Text = "JSON Serialize";
+            btnXMLSerialize.Text = "XML Serialize";
             btnXMLSerialize.UseVisualStyleBackColor = true;
+            btnXMLSerialize.Click += btnXMLSerialize_Click;
             // 
-            // btnCreate
+            // btnAddtoList
             // 
-            btnCreate.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnCreate.Location = new Point(239, 260);
-            btnCreate.Name = "btnCreate";
-            btnCreate.Size = new Size(75, 23);
-            btnCreate.TabIndex = 12;
-            btnCreate.Text = "Create";
-            btnCreate.UseVisualStyleBackColor = true;
-            btnCreate.Click += btnCreate_Click;
+            btnAddtoList.BackColor = Color.Honeydew;
+            btnAddtoList.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnAddtoList.Location = new Point(139, 252);
+            btnAddtoList.Name = "btnAddtoList";
+            btnAddtoList.Size = new Size(75, 23);
+            btnAddtoList.TabIndex = 13;
+            btnAddtoList.Text = "Add";
+            btnAddtoList.UseVisualStyleBackColor = false;
+            btnAddtoList.Click += btnAddtoList_Click;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ControlDark;
-            ClientSize = new Size(800, 450);
-            Controls.Add(btnCreate);
+            BackColor = Color.Gainsboro;
+            ClientSize = new Size(366, 420);
+            Controls.Add(btnAddtoList);
             Controls.Add(btnXMLDeserialize);
             Controls.Add(btnXMLSerialize);
             Controls.Add(btnJSONDeserialize);
@@ -205,6 +210,6 @@
         private Button btnJSONDeserialize;
         private Button btnXMLDeserialize;
         private Button btnXMLSerialize;
-        private Button btnCreate;
+        private Button btnAddtoList;
     }
 }
