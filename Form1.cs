@@ -44,22 +44,28 @@ namespace _10._1_Serialization
 
         private void btnJSONDeserialize_Click(object sender, EventArgs e)
         {
-            FileStream jsonStream = new FileStream(json, FileMode.Open, FileAccess.Read);
-            var list = JsonSerializer.Deserialize<List<Customer>>(jsonStream);
-
-            StringBuilder customerListInfo = new StringBuilder();
-
-            foreach (var cust in list)
+            if (File.Exists(json))
             {
-                customerListInfo.AppendLine($"Id: {cust.Id}");
-                customerListInfo.AppendLine($"Last Name: {cust.LastName}");
-                customerListInfo.AppendLine($"Membership: {cust.Membership}");
-                customerListInfo.AppendLine();
-            }
-            MessageBox.Show(customerListInfo.ToString());
-            jsonStream.Close();
-        }
+                FileStream jsonStream = new FileStream(json, FileMode.Open, FileAccess.Read);
+                var list = JsonSerializer.Deserialize<List<Customer>>(jsonStream);           
+                StringBuilder customerListInfo = new StringBuilder();
 
+                foreach (var cust in list)
+                {
+                    customerListInfo.AppendLine($"Id: {cust.Id}");
+                    customerListInfo.AppendLine($"Last Name: {cust.LastName}");
+                    customerListInfo.AppendLine($"Membership: {cust.Membership}");
+                    customerListInfo.AppendLine();
+                }
+
+                MessageBox.Show(customerListInfo.ToString());                         
+                jsonStream.Close();
+            }
+            else
+            {
+                MessageBox.Show("No json file found!");
+            }
+        }
         private void btnXMLSerialize_Click(object sender, EventArgs e)
         {
             if (File.Exists(xml))
@@ -75,21 +81,28 @@ namespace _10._1_Serialization
 
         private void btnXMLDeserialize_Click(object sender, EventArgs e)
         {
-            FileStream xmlStream = new FileStream(xml, FileMode.Open, FileAccess.Read);
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Customer>));
-            var list = (List<Customer>)xmlSerializer.Deserialize(xmlStream);
-           
-            StringBuilder customerListInfo = new StringBuilder();
-
-            foreach (var cust in list)
+            if(File.Exists(xml))
             {
-                customerListInfo.AppendLine($"Id: {cust.Id}");
-                customerListInfo.AppendLine($"Last Name: {cust.LastName}");
-                customerListInfo.AppendLine($"Membership: {cust.Membership}");
-                customerListInfo.AppendLine();
+                FileStream xmlStream = new FileStream(xml, FileMode.Open, FileAccess.Read);
+                XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Customer>));
+                var list = (List<Customer>)xmlSerializer.Deserialize(xmlStream);                  
+                StringBuilder customerListInfo = new StringBuilder();
+
+                foreach (var cust in list)
+                {
+                    customerListInfo.AppendLine($"Id: {cust.Id}");
+                    customerListInfo.AppendLine($"Last Name: {cust.LastName}");
+                    customerListInfo.AppendLine($"Membership: {cust.Membership}");
+                    customerListInfo.AppendLine();
+                }
+
+                MessageBox.Show(customerListInfo.ToString());   
+                xmlStream.Close();
             }
-            MessageBox.Show(customerListInfo.ToString());
-            xmlStream.Close();
+            else
+            {
+                MessageBox.Show("No xml file found!");
+            }
         }
 
     }
