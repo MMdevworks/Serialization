@@ -41,6 +41,7 @@
             btnXMLDeserialize = new Button();
             btnXMLSerialize = new Button();
             btnCreate = new Button();
+            btnAddtoList = new Button();
             SuspendLayout();
             // 
             // btnJSONSerialize
@@ -142,8 +143,9 @@
             btnXMLDeserialize.Name = "btnXMLDeserialize";
             btnXMLDeserialize.Size = new Size(110, 23);
             btnXMLDeserialize.TabIndex = 11;
-            btnXMLDeserialize.Text = "JSON Deserialize";
+            btnXMLDeserialize.Text = "XML Deserialize";
             btnXMLDeserialize.UseVisualStyleBackColor = false;
+            btnXMLDeserialize.Click += btnXMLDeserialize_Click;
             // 
             // btnXMLSerialize
             // 
@@ -152,8 +154,9 @@
             btnXMLSerialize.Name = "btnXMLSerialize";
             btnXMLSerialize.Size = new Size(110, 23);
             btnXMLSerialize.TabIndex = 10;
-            btnXMLSerialize.Text = "JSON Serialize";
+            btnXMLSerialize.Text = "XML Serialize";
             btnXMLSerialize.UseVisualStyleBackColor = true;
+            btnXMLSerialize.Click += btnXMLSerialize_Click;
             // 
             // btnCreate
             // 
@@ -166,12 +169,24 @@
             btnCreate.UseVisualStyleBackColor = true;
             btnCreate.Click += btnCreate_Click;
             // 
+            // btnAddtoList
+            // 
+            btnAddtoList.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnAddtoList.Location = new Point(365, 260);
+            btnAddtoList.Name = "btnAddtoList";
+            btnAddtoList.Size = new Size(75, 23);
+            btnAddtoList.TabIndex = 13;
+            btnAddtoList.Text = "Add";
+            btnAddtoList.UseVisualStyleBackColor = true;
+            btnAddtoList.Click += btnAddtoList_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlDark;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnAddtoList);
             Controls.Add(btnCreate);
             Controls.Add(btnXMLDeserialize);
             Controls.Add(btnXMLSerialize);
@@ -206,5 +221,6 @@
         private Button btnXMLDeserialize;
         private Button btnXMLSerialize;
         private Button btnCreate;
+        private Button btnAddtoList;
     }
 }
